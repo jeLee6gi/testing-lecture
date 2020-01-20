@@ -1,7 +1,4 @@
-from typing import Sequence
-
-
-def find_maxima(x: Sequence[float]):
+def find_maxima(x):
     """Find local maxima of x.
 
     Example:
@@ -15,6 +12,12 @@ def find_maxima(x: Sequence[float]):
     Output:
         idx -- list of indices of the local maxima in x
     """
+
+    if not isinstance(x, list):
+        raise ValueError
+
+    if not all(isinstance(_x, (int, float)) for _x in x):
+        raise ValueError
 
     idx = []
     for i in range(len(x)):

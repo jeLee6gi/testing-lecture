@@ -1,5 +1,7 @@
 import maxima
 
+import pytest
+
 
 def test_left_boundary():
     inp = [1, 0]
@@ -21,6 +23,19 @@ def test_both_boundaries_oob():
     assert maxima.find_maxima(inp) == [0, 2]
 
 
-def test_non_numeric():
+def test_characters():
     inp = "bca"
-    assert maxima.find_maxima(inp) == []
+    with pytest.raises(ValueError):
+        maxima.find_maxima(inp)
+
+
+def test_characters2():
+    inp = ["b", "c", "a"]
+    with pytest.raises(ValueError):
+        maxima.find_maxima(inp)
+
+
+def test_non_numeric():
+    inp = [None, [], "a", 5]
+    with pytest.raises(ValueError):
+        maxima.find_maxima(inp)
